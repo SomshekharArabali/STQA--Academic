@@ -6,8 +6,8 @@ const { expect } = require("chai");
 // !!IMPORTANT!! Update this port (5500) if your Live Server uses a different one.
 const BASE_URL = "http://127.0.0.1:5500";
 
-// Test Suite for the Online Bookstore
-describe("Online Bookstore Tests", function () {
+// Test Suite for the Online Coffee Store
+describe("Online Coffee Store Tests", function () {
   // Set a longer timeout for browser actions
   this.timeout(60000);
   let driver;
@@ -89,13 +89,13 @@ describe("Online Bookstore Tests", function () {
   });
 
   // Test Case 4: Add to Cart
-  it("should add a book to the cart and update the cart count", async function () {
+  it("should add a coffee to the cart and update the cart count", async function () {
     // 1. Navigate to the home page
     await driver.get(`${BASE_URL}/index.html`);
 
     // 2. Find the first 'Add to Cart' button and click it
-    // Using .book-item button is a good CSS selector
-    await driver.findElement(By.css(".book-item button")).click();
+    // Using .coffee-item button is a good CSS selector
+    await driver.findElement(By.css(".coffee-item button")).click();
 
     // 3. Verification: Check if the cart count text is '1'
     const cartCount = await driver.findElement(By.id("cart-count")).getText();
@@ -106,7 +106,7 @@ describe("Online Bookstore Tests", function () {
   it("should allow removing an item from the cart", async function () {
     // 1. Navigate to home and add an item (to ensure cart is not empty)
     await driver.get(`${BASE_URL}/index.html`);
-    await driver.findElement(By.css(".book-item button")).click();
+    await driver.findElement(By.css(".coffee-item button")).click();
 
     // 2. Go to the cart page
     await driver.get(`${BASE_URL}/cart.html`);

@@ -7,22 +7,22 @@ document.addEventListener("DOMContentLoaded", () => {
     password: "password123",
   };
 
-  // Hard-coded book data
-  const books = [
+  // Hard-coded coffee data
+  const coffees = [
     {
       id: 1,
-      title: "The Great Gatsby",
-      author: "F. Scott Fitzgerald",
-      price: 10.99,
+      name: "Espresso Roast",
+      roast: "Dark Roast",
+      price: 4.50,
     },
     {
       id: 2,
-      title: "To Kill a Mockingbird",
-      author: "Harper Lee",
-      price: 12.5,
+      name: "Breakfast Blend",
+      roast: "Light Roast",
+      price: 5.25,
     },
-    { id: 3, title: "1984", author: "George Orwell", price: 9.75 },
-    { id: 4, title: "Pride and Prejudice", author: "Jane Austen", price: 8.99 },
+    { id: 3, name: "Sumatra Mandheling", roast: "Medium-Dark Roast", price: 6.00 },
+    { id: 4, name: "Ethiopian Yirgacheffe", roast: "Light Roast", price: 5.75 },
   ];
 
   // --- CART LOGIC ---
@@ -42,17 +42,17 @@ document.addEventListener("DOMContentLoaded", () => {
     updateCartCount();
   }
 
-  function addToCart(bookId) {
-    const book = books.find((b) => b.id === bookId);
-    if (book) {
-      cart.push(book);
+  function addToCart(coffeeId) {
+    const coffee = coffees.find((c) => c.id === coffeeId);
+    if (coffee) {
+      cart.push(coffee);
       saveCart();
-      console.log(`${book.title} added to cart!`);
+      console.log(`${coffee.name} added to cart!`);
     }
   }
 
-  function removeFromCart(bookId) {
-    cart = cart.filter((book) => book.id !== bookId);
+  function removeFromCart(coffeeId) {
+    cart = cart.filter((coffee) => coffee.id !== coffeeId);
     saveCart();
     displayCartItems(); // Re-render cart page
   }
@@ -64,27 +64,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- HOME PAGE (`index.html`) ---
   if (currentPage === "index.html" || currentPage === "") {
-    const bookList = document.getElementById("book-list");
-    if (bookList) {
-      books.forEach((book) => {
-        const bookItem = document.createElement("div");
-        bookItem.className = "book-item";
-        bookItem.innerHTML = `
-                    <h3>${book.title}</h3>
-                    <p>by ${book.author}</p>
-                    <p><b>$${book.price.toFixed(2)}</b></p>
+    const coffeeList = document.getElementById("coffee-list");
+    if (coffeeList) {
+      coffees.forEach((coffee) => {
+        const coffeeItem = document.createElement("div");
+        coffeeItem.className = "coffee-item";
+        coffeeItem.innerHTML = `
+                    <h3>${coffee.name}</h3>
+                    <p>Roast: ${coffee.roast}</p>
+                    <p><b>$${coffee.price.toFixed(2)}</b></p>
                     <button class="add-to-cart" data-id="${
-                      book.id
+                      coffee.id
                     }">Add to Cart</button>
                 `;
-        bookList.appendChild(bookItem);
+        coffeeList.appendChild(coffeeItem);
       });
 
       // Add event listeners to "Add to Cart" buttons
       document.querySelectorAll(".add-to-cart").forEach((button) => {
         button.addEventListener("click", (e) => {
-          const bookId = parseInt(e.target.getAttribute("data-id"));
-          addToCart(bookId);
+          const coffeeId = parseInt(e.target.getAttribute("data-id"));
+          addToCart(coffeeId);
         });
       });
     }
@@ -172,20 +172,20 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      cart.forEach((book) => {
+      cart.forEach((coffee) => {
         const cartItem = document.createElement("div");
         cartItem.className = "cart-item";
         cartItem.innerHTML = `
                     <div class="cart-item-details">
-                        <h3>${book.title}</h3>
-                        <p>$${book.price.toFixed(2)}</p>
+                        <h3>${coffee.name}</h3>
+                        <p>$${coffee.price.toFixed(2)}</p>
                     </div>
                     <button class="remove-from-cart" data-id="${
-                      book.id
+                      coffee.id
                     }">Remove</button>
                 `;
         cartItemsContainer.appendChild(cartItem);
-        total += book.price;
+        total += coffee.price;
       });
 
       totalPriceEl.textContent = total.toFixed(2);
@@ -193,8 +193,8 @@ document.addEventListener("DOMContentLoaded", () => {
       // Add event listeners to "Remove" buttons
       document.querySelectorAll(".remove-from-cart").forEach((button) => {
         button.addEventListener("click", (e) => {
-          const bookId = parseInt(e.target.getAttribute("data-id"));
-          removeFromCart(bookId);
+          const coffeeId = parseInt(e.target.getAttribute("data-id"));
+          removeFromCart(coffeeId);
         });
       });
     }

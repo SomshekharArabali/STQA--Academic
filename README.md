@@ -1,10 +1,11 @@
-## 🚀 How to Run This Project
+## 🚀 How to Run This Project - Online Coffee Store
 
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone "https://github.com/PawanPawar11/STQA-Mini-Project---Online-BookStore-Testing.git"
+git clone https://github.com/SomshekharArabali/STQA--Academic
 ```
+(Note: The repository name still refers to 'BookStore', but the content of the app has changed.)
 
 ### 2️⃣ Install Dependencies
 
@@ -23,8 +24,8 @@ If you don’t have the extension, install **Live Server** from the VS Code exte
 
 You can start it in two ways:
 
-* **Right-click → “Open with Live Server”**, or
-* **Press `Alt + L + O`** (shortcut)
+*   **Right-click → “Open with Live Server”**, or
+*   **Press `Alt + L + O`** (shortcut)
 
 > ⚠️ Make sure Live Server runs on **Google Chrome**, otherwise some test cases might fail.
 
